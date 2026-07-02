@@ -1,0 +1,20 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  hrms.application:
+    build:
+      context: "C:\\Users\\abdul\\Desktop\\Backend\\HRMS"
+      dockerfile: "HRMS.Application/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/HRMS.Application.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "hrms.application:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\abdul\\Desktop\\Backend\\HRMS\\HRMS.Application:/app:rw"
+    - "C:\\Users\\abdul\\Desktop\\Backend\\HRMS:/src:rw"
+    - "C:\\Users\\abdul\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"
