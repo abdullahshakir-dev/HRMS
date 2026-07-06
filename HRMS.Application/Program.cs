@@ -1,5 +1,4 @@
-using HRMS.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
+using HRMS.Infrastructure.Extensions;
 using Scalar.AspNetCore;
 using Serilog;
 
@@ -9,12 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString"));
-});
-
-
+builder.Services.AddIdentityServices(builder.Configuration);
 
 
 var app = builder.Build();
