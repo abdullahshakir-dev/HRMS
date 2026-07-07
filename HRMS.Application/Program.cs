@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
 
-builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 
 var app = builder.Build();

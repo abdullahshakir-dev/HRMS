@@ -1,14 +1,13 @@
-﻿using HRMS.Domain.Entities;
-using HRMS.Domain.SeedWork;
+﻿using HRMS.Domain.SeedWork;
 using Microsoft.EntityFrameworkCore;
 
 namespace HRMS.Infrastructure.Persistence;
 
-public class Repository <TEntity> : IRepository<TEntity> where TEntity: class
+public class GenericGenericRepository <TEntity> : IGenericRepository<TEntity> where TEntity: class
 {
     private readonly AppDbContext _context;
 
-    public Repository(AppDbContext context)
+    public GenericGenericRepository(AppDbContext context)
     {
         _context = context;
         

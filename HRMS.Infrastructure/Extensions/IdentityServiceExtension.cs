@@ -8,13 +8,15 @@ namespace HRMS.Infrastructure.Extensions;
 
 public static class IdentityServiceExtension
 {
-    public static IServiceCollection AddIdentityServices(
+    public static IServiceCollection AddInfrastructureServices(
         this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<AppDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultString")));
 
-        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericGenericRepository<>));
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddAutoMapper(typeof(IdentityServiceExtension));
         
         return services;
     }

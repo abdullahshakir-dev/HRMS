@@ -1,6 +1,6 @@
 ﻿namespace HRMS.Domain.SeedWork;
 
-public interface IRepository<TEntity>
+public interface IGenericRepository<TEntity>
 {
     Task<IEnumerable<TEntity>> GetAllAsync();
     
