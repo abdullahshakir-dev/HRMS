@@ -10,8 +10,8 @@ public sealed class Attendance : Entity
     public TimeOnly? CheckOut { get; private set; }
     public AttendanceStatus Status { get; private set; }
 
-    public Profile Profile { get; private set; }
-    
+    public Profile Profile { get; private set; } = null!;
+
     public Attendance(Guid profileId, DateOnly date)
     {
         ProfileId = profileId;

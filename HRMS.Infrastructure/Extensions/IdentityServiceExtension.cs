@@ -16,8 +16,6 @@ public static class IdentityServiceExtension
 
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericGenericRepository<>));
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddAutoMapper(typeof(IdentityServiceExtension));
-        
         return services;
     }
 }

@@ -10,7 +10,7 @@ public sealed class LeaveRequest : Entity
     public Guid ApprovedById { get; private set; }
     public LeaveRequestStatus Status { get; private set; }
 
-    public Profile Profile { get; private set; }
+    public Profile Profile { get; private set; } = null!;
 
     public LeaveRequest(DateTime startDate, DateTime endDate, Guid profileId, Guid approvedById)
     {

@@ -10,6 +10,11 @@ builder.Host.UseSerilog((context, configuration) =>
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
+builder.Services.AddControllers();
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+builder.Services.AddAutoMapper(typeof(Program));
+
 
 var app = builder.Build();
 
@@ -34,5 +39,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseSerilogRequestLogging();
 
+app.MapControllers();
 
 app.Run();
