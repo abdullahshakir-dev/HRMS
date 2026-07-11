@@ -18,7 +18,7 @@ public class DepartmentsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<DepartmentResponseDto>>> GetAll(
+    public async Task<IActionResult> GetAll(
         CancellationToken cancellationToken)
     {
         var departments = await _mediator.Send(new GetAllDepartmentsQuery(), cancellationToken);
@@ -38,5 +38,20 @@ public class DepartmentsController : ControllerBase
         var id = await _mediator.Send(command, cancellationToken);
 
         return CreatedAtAction(nameof(GetAll), new { id }, id);
+    }
+
+    [HttpPut("{id:Guid}")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateDepartmentCommand command)
+    {
+        if (id != command.Id)
+        {
+            return BadRequest("The Id does not match");
+        }
+        
+        var isUpdated = await _mediator.Send(command);
+        
+        if (!isUpdated) return NotFound("Department with this ID not found");
+
+        return Ok();
     }
 }
