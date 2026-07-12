@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using HRMS.Application.DTOs;
+using MediatR;
 
 namespace HRMS.Application.CQRS.Departments.Commands;
 
-public class AddDepartmentCommand : IRequest<Guid>
+public class AddDepartmentCommand : IRequest<DepartmentResponseDto>
 {
     public string Name { get; private set; }
     public string Code { get; private set; }

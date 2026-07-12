@@ -2,7 +2,6 @@
 using HRMS.Application.CQRS.Departments.Commands;
 using HRMS.Domain.Entities;
 using HRMS.Domain.SeedWork;
-using HRMS.Infrastructure.Persistence;
 using MediatR;
 
 namespace HRMS.Application.CQRS.Departments.Handlers;
@@ -10,10 +9,10 @@ namespace HRMS.Application.CQRS.Departments.Handlers;
 public class UpdateDepartmentCommandHandler : IRequestHandler<UpdateDepartmentCommand, bool>
 {
     private readonly IGenericRepository<Department> _departmentRepository;
-    private readonly UnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public UpdateDepartmentCommandHandler(IGenericRepository<Department> departmentRepository,UnitOfWork unitOfWork , IMapper mapper)
+    public UpdateDepartmentCommandHandler(IGenericRepository<Department> departmentRepository,IUnitOfWork unitOfWork , IMapper mapper)
     {
         _departmentRepository = departmentRepository;
         _unitOfWork = unitOfWork;

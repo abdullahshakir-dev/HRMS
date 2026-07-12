@@ -1,7 +1,6 @@
 ﻿using HRMS.Application.CQRS.Departments.Commands;
 using HRMS.Domain.Entities;
 using HRMS.Domain.SeedWork;
-using HRMS.Infrastructure.Persistence;
 using MediatR;
 
 namespace HRMS.Application.CQRS.Departments.Handlers;
@@ -9,9 +8,9 @@ namespace HRMS.Application.CQRS.Departments.Handlers;
 public class DeleteDepartmentCommandHandler : IRequestHandler<DeleteDepartmentCommand, bool>
 {
     private readonly IGenericRepository<Department> _departmentRepository;
-    private readonly UnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public DeleteDepartmentCommandHandler(IGenericRepository<Department> departmentRepository, UnitOfWork unitOfWork)
+    public DeleteDepartmentCommandHandler(IGenericRepository<Department> departmentRepository, IUnitOfWork unitOfWork)
     {
         _departmentRepository = departmentRepository;
         _unitOfWork = unitOfWork;

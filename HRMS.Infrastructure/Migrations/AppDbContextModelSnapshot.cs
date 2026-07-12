@@ -53,7 +53,7 @@ namespace HRMS.Infrastructure.Migrations
 
                     b.HasIndex("ProfileId");
 
-                    b.ToTable("Attendances");
+                    b.ToTable("Attendances", (string)null);
                 });
 
             modelBuilder.Entity("HRMS.Domain.Entities.Department", b =>
@@ -87,7 +87,7 @@ namespace HRMS.Infrastructure.Migrations
 
                     b.HasIndex("Id");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Departments", (string)null);
                 });
 
             modelBuilder.Entity("HRMS.Domain.Entities.Employee", b =>
@@ -135,7 +135,7 @@ namespace HRMS.Infrastructure.Migrations
 
                     b.HasIndex("Id");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("HRMS.Domain.Entities.LeaveRequest", b =>
@@ -166,7 +166,7 @@ namespace HRMS.Infrastructure.Migrations
 
                     b.HasIndex("ProfileId");
 
-                    b.ToTable("LeaveRequests");
+                    b.ToTable("LeaveRequests", (string)null);
                 });
 
             modelBuilder.Entity("HRMS.Domain.Entities.Profile", b =>
@@ -199,7 +199,7 @@ namespace HRMS.Infrastructure.Migrations
 
                     b.HasIndex("SupervisorId");
 
-                    b.ToTable("Profiles");
+                    b.ToTable("Profiles", (string)null);
                 });
 
             modelBuilder.Entity("HRMS.Domain.Entities.Project", b =>
@@ -221,7 +221,7 @@ namespace HRMS.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Projects", (string)null);
                 });
 
             modelBuilder.Entity("HRMS.Domain.Entities.ProjectProfiles", b =>
@@ -245,7 +245,7 @@ namespace HRMS.Infrastructure.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("ProjectProfiles");
+                    b.ToTable("ProjectProfiles", (string)null);
                 });
 
             modelBuilder.Entity("HRMS.Domain.Entities.Attendance", b =>

@@ -13,7 +13,7 @@ public class AutoMapperProfiles : Profile
 
         CreateMap<AddDepartmentCommand, Department>();
         CreateMap<Department, DepartmentResponseDto>();
-        CreateMap<Profile, DepartmentProfileResponseDto>();
+        CreateMap<HRMS.Domain.Entities.Profile, DepartmentProfileResponseDto>();
     }
 
 }

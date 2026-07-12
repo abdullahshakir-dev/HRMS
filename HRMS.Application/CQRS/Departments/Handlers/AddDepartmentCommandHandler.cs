@@ -1,12 +1,13 @@
 using AutoMapper;
 using HRMS.Application.CQRS.Departments.Commands;
+using HRMS.Application.DTOs;
 using HRMS.Domain.Entities;
 using HRMS.Domain.SeedWork;
 using MediatR;
 
 namespace HRMS.Application.CQRS.Departments.Handlers;
 
-public class AddDepartmentCommandHandler : IRequestHandler<AddDepartmentCommand, Guid>
+public class AddDepartmentCommandHandler : IRequestHandler<AddDepartmentCommand, DepartmentResponseDto>
 {
     private readonly IGenericRepository<Department> _departmentRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -21,7 +22,7 @@ public class AddDepartmentCommandHandler : IRequestHandler<AddDepartmentCommand,
         _mapper = mapper;
     }
 
-    public async Task<Guid> Handle(AddDepartmentCommand request, CancellationToken cancellationToken)
+    public async Task<DepartmentResponseDto> Handle(AddDepartmentCommand request, CancellationToken cancellationToken)
     {
         var department = _mapper.Map<Department>(request);
 
@@ -33,6 +34,6 @@ public class AddDepartmentCommandHandler : IRequestHandler<AddDepartmentCommand,
             throw new InvalidOperationException("Failed to persist the new department.");
         }
 
-        return department.Id;
+        return _mapper.Map<DepartmentResponseDto>(department);
     }
 }
