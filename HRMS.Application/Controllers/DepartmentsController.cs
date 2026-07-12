@@ -41,17 +41,27 @@ public class DepartmentsController : ControllerBase
     }
 
     [HttpPut("{id:Guid}")]
-    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateDepartmentCommand command)
+    public async Task<IActionResult> Update(
+        Guid id, [FromBody] DepartmentRequestDto request, CancellationToken cancellationToken)
     {
-        if (id != command.Id)
-        {
-            return BadRequest("The Id does not match");
-        }
-        
-        var isUpdated = await _mediator.Send(command);
-        
-        if (!isUpdated) return NotFound("Department with this ID not found");
+        var updated = await _mediator.Send(
+            new UpdateDepartmentCommand(
+                id, request.Name, request.Code, request.Latitude, request.Longitude),
+            cancellationToken);
 
-        return Ok();
+        if (updated is null) return NotFound("Department with this ID not found");
+
+        return Ok(updated);
+    }
+
+
+    [HttpDelete("{id:Guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var isDeleted = await _mediator.Send(new DeleteDepartmentCommand(id));
+
+        if (isDeleted is false) return  NotFound("Department with this ID not found");
+
+        return NoContent();
     }
 }

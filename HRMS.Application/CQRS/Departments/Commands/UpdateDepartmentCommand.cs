@@ -1,9 +1,10 @@
-﻿using HRMS.Domain.Entities;
+﻿using HRMS.Application.DTOs;
+using HRMS.Domain.Entities;
 using MediatR;
 
 namespace HRMS.Application.CQRS.Departments.Commands;
 
-public class UpdateDepartmentCommand : IRequest<bool>
+public class UpdateDepartmentCommand : IRequest<DepartmentRequestDto>
 {
     public Guid Id { get; set; }
     public string Name { get; private set; }

@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using HRMS.Application.CQRS.Departments.Commands;
+using HRMS.Application.DTOs;
 using HRMS.Domain.Entities;
 using HRMS.Domain.SeedWork;
 using MediatR;
 
 namespace HRMS.Application.CQRS.Departments.Handlers;
 
-public class UpdateDepartmentCommandHandler : IRequestHandler<UpdateDepartmentCommand, bool>
+public class UpdateDepartmentCommandHandler : IRequestHandler<UpdateDepartmentCommand, DepartmentRequestDto>
 {
     private readonly IGenericRepository<Department> _departmentRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -18,13 +19,13 @@ public class UpdateDepartmentCommandHandler : IRequestHandler<UpdateDepartmentCo
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
-    public async Task<bool> Handle(UpdateDepartmentCommand request, CancellationToken cancellationToken)
+    public async Task<DepartmentRequestDto> Handle(UpdateDepartmentCommand request, CancellationToken cancellationToken)
     {
         try
         { 
             var department = await _departmentRepository.GetById(request.Id);
             
-            if (department == null) return false;
+            if (department == null) return null;
             
             _mapper.Map(request, department);
             
@@ -32,9 +33,9 @@ public class UpdateDepartmentCommandHandler : IRequestHandler<UpdateDepartmentCo
 
             if ( await _unitOfWork.SaveChangesAsync(cancellationToken))
             {
-                return true;
+                return _mapper.Map<DepartmentRequestDto>(department);
             }
-            return false;
+            return null;
         }
         catch (Exception e)
         {

@@ -12,6 +12,7 @@ public class AutoMapperProfiles : Profile
         CreateMap<Department, DepartmentRequestDto>().ReverseMap();
 
         CreateMap<AddDepartmentCommand, Department>();
+        CreateMap<UpdateDepartmentCommand, Department>();
         CreateMap<Department, DepartmentResponseDto>();
         CreateMap<HRMS.Domain.Entities.Profile, DepartmentProfileResponseDto>();
     }
